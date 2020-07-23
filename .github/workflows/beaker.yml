@@ -14,3 +14,4 @@ jobs:
       with:
         beaker_token: ${{ secrets.BEAKER_TOKEN }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        beaker_workspace: ai2/slater-default
