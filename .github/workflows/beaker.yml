@@ -1,0 +1,16 @@
+name: Beaker Image Builder
+on:
+  push:
+    # Run on every commit to the master branch.
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Check out the repository so that the Beaker Image Builder can access it.
+    - uses: actions/checkout@v2
+    - name: Beaker Image Builder
+      uses: beaker/image-builder@master
+      with:
+        beaker_token: ${{ secrets.BEAKER_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
