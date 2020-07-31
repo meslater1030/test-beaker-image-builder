@@ -17,7 +17,6 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN ln -s /usr/bin/pip3 /usr/bin/pip
 
 COPY requirements.txt .
-COPY setup.py .
-RUN pip install -e .
+RUN pip install requirements.txt
 
 ENTRYPOINT ["python"]
