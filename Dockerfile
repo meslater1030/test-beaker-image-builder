@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          build-essential \
          cmake \
          git \
-         python3.6-dev \
+         python3.7-dev \
          python3-setuptools \
          python3-pip && \
      rm -rf /var/lib/apt/lists/*
@@ -16,7 +16,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN ln -s /usr/bin/pip3 /usr/bin/pip
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-ENTRYPOINT ["python"]
+CMD ["/bin/bash"]
