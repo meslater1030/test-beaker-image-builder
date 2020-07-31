@@ -16,9 +16,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN ln -s /usr/bin/pip3 /usr/bin/pip
 
-RUN git clone https://github.com/allenai/longformer
-WORKDIR /longformer
-RUN git checkout trainer
-RUN pip install -e .
-
-ENTRYPOINT ["python", "scripts/pretrain.py"]
+CMD ["/bin/bash"]
