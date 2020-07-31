@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-base-ubuntu18.04
+FROM nvidia/cuda:10.0-base-ubuntu18.04
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
