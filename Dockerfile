@@ -1,33 +1,20 @@
-FROM library/python:3.7
+FROM nvidia/cuda:10.2-base-ubuntu18.04
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-ENV PATH /usr/local/nvidia/bin/:$PATH
-ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
-ENV PYTHONPATH .:$PYTHONPATH
-
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
-
-LABEL com.nvidia.volumes.needed="nvidia_driver"
-
 # Install base packages.
-RUN apt-get update --fix-missing && apt-get install -y \
-    bzip2 \
-    ca-certificates \
-    curl \
-    gcc \
-    git \
-    libc-dev \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender1 \
-    wget \
-    libevent-dev \
-    build-essential && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+         build-essential \
+         cmake \
+         git \
+         python3.6-dev \
+         python3-setuptools \
+         python3-pip && \
+     rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN ln -s /usr/bin/pip3 /usr/bin/pip
 
 RUN git clone https://github.com/allenai/longformer
 WORKDIR /longformer
