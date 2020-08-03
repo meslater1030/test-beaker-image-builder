@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-distutils \
     python3-setuptools \
     python3-dev \
+    python3-pip \
     git \
     build-essential \
     cmake && \
