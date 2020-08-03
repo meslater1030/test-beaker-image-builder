@@ -12,9 +12,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip
 RUN python3.7 -m pip install pip
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3-distutils \
+    python3.7-distutils \
     python3-setuptools \
-    python-dev \
+    python3.7-dev \
     git \
     build-essential \
     cmake && \
