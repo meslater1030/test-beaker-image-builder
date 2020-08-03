@@ -37,4 +37,4 @@ COPY tvm tvm
 COPY longformer longformer
 RUN pip install .
 
-ENTRYPOINT ["python"]
+CMD ["/bin/bash"]
