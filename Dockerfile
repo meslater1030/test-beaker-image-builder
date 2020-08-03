@@ -28,5 +28,13 @@ RUN apt-get update --fix-missing && apt-get install -y \
     libevent-dev \
     build-essential && \
     rm -rf /var/lib/apt/lists/*
-    
-CMD ["/bin/bash"]
+
+WORKDIR /longformer
+
+COPY requirements.txt .
+COPY setup.py .
+COPY tvm tvm
+COPY longformer longformer
+RUN pip install .
+
+ENTRYPOINT ["python"]
