@@ -1,26 +1,32 @@
-FROM nvidia/cuda:10.2-base-ubuntu18.04
+FROM library/python:3.7
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
+ENV PATH /usr/local/nvidia/bin/:$PATH
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
+ENV PYTHONPATH .:$PYTHONPATH
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
+LABEL com.nvidia.volumes.needed="nvidia_driver"
+
 # Install base packages.
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        software-properties-common
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3.7 \
-    python3-pip
-RUN python3.7 -m pip install pip
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3.7-distutils \
-    python3-setuptools \
-    python3.7-dev \
+RUN apt-get update --fix-missing && apt-get install -y \
+    bzip2 \
+    ca-certificates \
+    curl \
+    gcc \
     git \
-    build-essential \
-    cmake && \
-rm -rf /var/lib/apt/lists/*
-
-RUN ln -s /usr/bin/python3.7 /usr/bin/python
-RUN ln -s /usr/bin/pip3 /usr/bin/pip
-
+    libc-dev \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    wget \
+    libevent-dev \
+    build-essential && \
+    rm -rf /var/lib/apt/lists/*
+    
 CMD ["/bin/bash"]
